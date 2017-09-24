@@ -1,6 +1,6 @@
 # express-async-await
 
-Use async/await in your routes without
+Use [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) in your routes without
 polluting / [wrapping](https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016) them.
 
 ## Usage
@@ -19,9 +19,17 @@ app.get('/ok', async function(req, res, next) {
 app.get('/no', async function(req, res) {
   res.notSomethingICanRun({hello: 'world'})
 })
+
+app.use((err, req, res, next) => {
+  console.error(err)
+
+  res.status(500).send("Ouch!")
+})
 ```
 
-Now `app.$method` support async functions out of the box!
+Now `app.$method(route, fn)` support async functions out of the box!
+
+(have a look at the [example app](https://github.com/odino/express-async-await/blob/master/example.js))
 
 ## Installation
 

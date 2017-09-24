@@ -26,4 +26,10 @@ app.get('/no4', function(req, res) {
   throw new Error('123')
 })
 
+app.use((err, req, res, next) => {
+  console.error(err)
+
+  res.status(500).send("Ouch!")
+})
+
 app.listen(8080)
