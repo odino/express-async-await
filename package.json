@@ -1,0 +1,24 @@
+{
+  "name": "express-async-await",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/odino/express-async-await"
+  },
+  "keywords": [
+    "express",
+    "async",
+    "await",
+    "swag"
+  ],
+  "author": "Alessandro Nadalin <alessandro.nadalin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
