@@ -8,13 +8,17 @@ module.exports = function(app) {
     let original = app[m.toLowerCase()]
 
     app[m.toLowerCase()] = function(...args) {
-      if (typeof args[1] === 'function') {
-        args[1] =  wrapAsync(args[1])
-      }
+      const wrappedArgs = args.map(arg => {
+        if (typeof arg === 'function') {
+          return wrapAsync(arg);
+        }
 
-      return original.call(app, ...args)
+        return arg;
+      });
+
+      return original.call(app, ...wrappedArgs);
     }
-  })
+  });
 
   return app
 }
