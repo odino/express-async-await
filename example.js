@@ -26,6 +26,18 @@ app.get('/no4', function(req, res) {
   throw new Error('123')
 })
 
+app.get('/ok-middleware', function(req, res, next) {
+  next();
+}, async function(req, res, next) {
+  res.json({hello: 'world'})
+})
+
+app.get('/no-middleware', function(req, res, next) {
+  next();
+}, async function(req, res, next) {
+  throw new Error('123');
+})
+
 app.use((err, req, res, next) => {
   console.error(err)
 
