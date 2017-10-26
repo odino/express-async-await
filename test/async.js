@@ -1,10 +1,11 @@
-const express = require('express');
 const supertest = require('supertest');
 const assert = require('assert');
 
+const express = require('express');
 require('../index')();
 
 describe('async routes', () => {
+
   const err = new Error('Bad');
 
   it('should catch errors thrown in async routes created by express.Router()', async () => {
@@ -119,3 +120,4 @@ function getTestApp() {
 
   return app;
 }
+

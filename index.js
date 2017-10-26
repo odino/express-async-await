@@ -21,27 +21,30 @@ const wrapVerbs = (app) => {
 };
 
 module.exports = function(app) {
-  wrapVerbs(express);
+  if(app) {
+    wrapVerbs(app);
+    return app;
+  } else {
+    wrapVerbs(express);
 
-  let originalRoute = express.route;
-  express.route = function(...args) {
-    let retRoute = originalRoute.call(express, ...args);
+    let originalRoute = express.route;
+    express.route = function(...args) {
+      let retRoute = originalRoute.call(express, ...args);
 
-    wrapVerbs(retRoute);
+      wrapVerbs(retRoute);
 
-    return retRoute;
-  };
+      return retRoute;
+    };
 
-  let originalRouter = express.Router.route;
-  express.Router.route = function(...args) {
-    let retRoute = originalRouter.call(this, ...args);
+    let originalRouter = express.Router.route;
+    express.Router.route = function(...args) {
+      let retRoute = originalRouter.call(this, ...args);
 
-    wrapVerbs(retRoute);
+      wrapVerbs(retRoute);
 
-    return retRoute;
-  };
-
-  return app;
+      return retRoute;
+    };
+  }
 }
 
 function isAsync(fn) {
